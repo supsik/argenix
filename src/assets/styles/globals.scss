@@ -1,0 +1,26 @@
+@use './fonts';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'google-sans';
+  color: #FFF;
+}
+
+body {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: $primary;
+  cursor: none;
+  overflow: hidden;
+}
+
+.cursor {
+  z-index: 9999;
+  position: absolute;
+  transform: translate(-100px, -100px);
+  pointer-events: none;
+}

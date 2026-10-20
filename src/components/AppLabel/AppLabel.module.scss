@@ -1,0 +1,15 @@
+.appLabelWr {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  user-select: none;
+
+  h2 {
+    font-size: 13px;
+    font-weight: 400;
+  }
+}

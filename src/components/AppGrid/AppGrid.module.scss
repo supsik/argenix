@@ -1,0 +1,11 @@
+.appGridWr {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fill, 80px);
+  grid-template-rows: repeat(auto-fill, 80px);
+  grid-auto-flow: column;
+  padding: 24px;
+}

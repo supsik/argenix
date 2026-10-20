@@ -1,9 +1,14 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  cacheComponents: true,
-  partialPrefetching: true,
+  partialPrefetching : true,
+  cacheComponents    : true,
+  devIndicators      : false,
+  sassOptions: {
+    includePaths: [path.join(process.cwd(), "src", "assets", "styles")],
+    additionalData: `@use "${path.join(process.cwd(), "src", "assets", "styles", "variables").replace(/\\/g, "/")}" as *;`,
+  },
 };
 
 export default nextConfig;
