@@ -5,13 +5,13 @@
   display: grid;
   place-items: center;
   z-index: 99;
-  color: #FFF;
   background-color: $primary;
-
   animation: preloader 4.25s ease-in-out forwards;
+  color: #FFF;
 
   svg {
     animation: logo 4s ease-in-out forwards;
+    color: #FFF;
   }
 }
 

@@ -1,9 +1,9 @@
 <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path
     d="M18 2H43C44.6569 2 46 3.34315 46 5V47C46 48.6569 44.6569 50 43 50H9C7.34315 50 6 48.6569 6 47V14L18 2Z"
-    fill="#003D30" />
-  <path d="M13 24H39" stroke-width="2.5" stroke="#00261E" />
-  <path d="M13 31H39" stroke-width="2.5" stroke="#00261E" />
-  <path d="M13 38H39" stroke-width="2.5" stroke="#00261E" />
-  <path d="M11.5 8.54545L18 2V12C18 13.1046 17.1046 14 16 14H6L11.5 8.54545Z" fill="#00261E" />
+    fill="#516300" />
+  <path d="M13 24H39" stroke-width="2.5" stroke="#344000" />
+  <path d="M13 31H39" stroke-width="2.5" stroke="#344000" />
+  <path d="M13 38H39" stroke-width="2.5" stroke="#344000" />
+  <path d="M11.5 8.54545L18 2V12C18 13.1046 17.1046 14 16 14H6L11.5 8.54545Z" fill="#344000" />
 </svg>

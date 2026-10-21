@@ -1,11 +1,17 @@
 @font-face {
-  font-family: 'google-sans';
-  src: url('../fonts/GoogleSans-Regular.ttf');
+  font-family: 'JetBrains';
+  src: url('../fonts/JetBrainsMonoNL-Regular.ttf');
   font-weight: 400;
 }
 
 @font-face {
-  font-family: 'google-sans';
-  src: url('../fonts/GoogleSans-Medium.ttf');
-  font-weight: 500;
+  font-family: 'JetBrains';
+  src: url('../fonts/JetBrainsMono-Light.ttf');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'JetBrains';
+  src: url('../fonts/JetBrainsMono-ExtraLight.ttf');
+  font-weight: 200;
 }

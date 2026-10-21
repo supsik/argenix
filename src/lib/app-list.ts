@@ -5,7 +5,7 @@ const appData: AppType[] = [
   {
     id          : 0,
     type        : 'exe',
-    title       : 'обо_мне',
+    title       : 'Обо мне',
     icon        : 'profile',
     isRemovable : true,
     component   : Profile,
