@@ -26,6 +26,7 @@ export default function AppGrid() {
       return <AppWrapper
         key={app.id}
         data={app}
+        setOpenedApps={setOpenedApps}
       >
         <Component />
       </AppWrapper>;

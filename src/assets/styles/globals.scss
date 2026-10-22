@@ -6,6 +6,7 @@
   box-sizing: border-box;
   font-family: 'JetBrains';
   color: $green;
+  cursor: none;
 }
 
 body {
@@ -14,7 +15,6 @@ body {
   display: flex;
   flex-direction: column;
   background-color: $primary;
-  cursor: none;
   overflow: hidden;
 }
 
@@ -23,4 +23,10 @@ body {
   position: absolute;
   transform: translate(-100px, -100px);
   pointer-events: none;
+}
+
+button, input {
+  background-color: transparent;
+  border: none;
+  outline: none;
 }
