@@ -1,19 +1,23 @@
 'use client';
 
-import { Dispatch, SetStateAction, useRef, type MouseEvent, type Key } from 'react';
+import { useRef, type MouseEvent, type Key } from 'react';
+import { useAppsStore } from '@/store/apps/apps-store-provider';
 import { AppType } from '@/lib/constants/types';
 import styles from './AppLabel.module.scss';
 import Image from 'next/image';
 
 interface PropsType {
-  app      : AppType;
-  checkApp : (app: AppType) => void;
+  app: AppType;
 };
 
-export default function AppLabel({ app, checkApp }: PropsType) {
+export default function AppLabel({ app }: PropsType) {
   const isDragging = useRef(false);
   const startPos   = useRef({ x: 0, y: 0 });
   const elementPos = useRef({ x: 0, y: 0 });
+
+  const openedApps = useAppsStore(s => s.openedApps);
+  const expandApp  = useAppsStore(s => s.expandApp);
+  const openApp    = useAppsStore(s => s.openApp);
 
   const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
     isDragging.current = true;
@@ -47,8 +51,11 @@ export default function AppLabel({ app, checkApp }: PropsType) {
     isDragging.current = false;
   };
 
-  const openApp = (app: AppType)  => {    
-    checkApp(app);
+  const checkAppAdd = (app: AppType) => {
+    if (!openedApps.some(el => el.id == app.id))
+      openApp(app);
+    else
+      expandApp(app.id)
   };
 
   return (
@@ -58,12 +65,12 @@ export default function AppLabel({ app, checkApp }: PropsType) {
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
-      onDoubleClick={() => openApp(app)}
+      onDoubleClick={() => checkAppAdd(app)}
     >
       <Image
         width={52}
         height={52}
-        src={`/icons/apps/${app.icon}.svg`}
+        src={app.iconSrc}
         alt={app.title}
         draggable={false}
       />

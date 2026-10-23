@@ -1,9 +1,21 @@
 .appWr {
   min-width: 480px;
   min-height: 290px;
+  background-color: $dark50;
+  pointer-events: all;
   position: absolute;
-  background-color: $dark25;
-  animation: app-init .2s cubic-bezier(0,.86,.63,.99);
+  z-index: 1;
+
+  &.isFullscreen {
+    min-width: 100%;
+    min-height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  .appHeader {
+    background-color: #000;
+  }
 }
 
 .appHeader {
@@ -16,6 +28,7 @@
   background-color: $dark50;
   position: relative;
   user-select: none;
+  transition: .2s cubic-bezier(0,.79,.72,1);
 
   h2 {
     font-size: 14px;
@@ -33,6 +46,11 @@
     height: 100%;
     padding-inline: 18px;
 
+    &:first-of-type img {
+      top: 4px;
+      position: relative;
+    }
+
     &:hover {
       background-color: #ffffff0a;
     }
@@ -40,17 +58,5 @@
     &:last-of-type:hover {
       background-color: $dark-green;
     }
-  }
-}
-
-@keyframes app-init {
-  0% {
-    transform: translateY(50%) scale(.5);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
   }
 }

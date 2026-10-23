@@ -6,7 +6,13 @@ export interface AppType {
   id          : Key,
   type        : appTypes,
   title       : string,
-  icon        : string,
+  iconSrc     : string,
   isRemovable : boolean
   component   : FunctionComponent,
+  expanded   ?: boolean,
+  fullsized  ?: boolean,
+  coords     ?: {
+    x: number,
+    y: number
+  }
 };

@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { AnimatePresence } from 'motion/react';
+import { useAppsStore } from '@/store/apps/apps-store-provider';
 import { AppType } from '@/lib/constants/types';
 import AppWrapper from '../AppWrapper/AppWrapper';
 import AppLabel from '../AppLabel/AppLabel';
@@ -8,28 +9,20 @@ import appData from '@/lib/app-list';
 import styles from './AppGrid.module.scss';
 
 export default function AppGrid() {
-  const [openedApps, setOpenedApps] = useState<Array<AppType>>([]);
-
-  const checkApp = (app: AppType) => {
-    if (!openedApps.some(el => el.id === app.id))
-      setOpenedApps(state => [...state, app]);
-  };
-
+  const openedApps = useAppsStore(s => s.openedApps);
+  
   return <div className={styles.appGridWr}>
     {appData.map(app => <AppLabel
       key={app.id}
       app={app}
-      checkApp={checkApp}
     />)}
-    {openedApps.map((app: AppType) => {
-      const Component = app.component;
-      return <AppWrapper
-        key={app.id}
-        data={app}
-        setOpenedApps={setOpenedApps}
-      >
-        <Component />
-      </AppWrapper>;
-    })}
+    <AnimatePresence>
+      {openedApps.map((app: AppType) => {
+        return !app.expanded && 
+        <AppWrapper key={app.id} data={app}>
+          <app.component />
+        </AppWrapper>
+      })}
+    </AnimatePresence>
   </div>
 }

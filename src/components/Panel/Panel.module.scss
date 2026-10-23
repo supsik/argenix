@@ -1,7 +1,57 @@
 .panelWr {
   width: 100%;
   height: 42px;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 24px;
   background-color: #00000070;
   z-index: 90;
   bottom: 0;
+
+  & > * {
+    color: #FFF;
+  }
+}
+
+.panelLogo {
+  width: 28px;
+  height: 16px;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    color: #FFF;
+  }
+}
+
+.panelTime {
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.panelOpenedItems {
+  height: 100%;
+  position: absolute;
+  transition: .25s;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.panelItem {
+  width: 48px;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  border-bottom: 3px solid $dark-green;
+  transition: border .2s;
+
+  &:hover {
+    background-color: rgba($dark-green, .3);
+  }
+
+  &.expanded {
+    border-color: transparent;
+  }
 }

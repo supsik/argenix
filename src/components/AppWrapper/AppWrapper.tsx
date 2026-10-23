@@ -1,56 +1,118 @@
-import { Dispatch, ReactNode, SetStateAction } from 'react';
+import { ReactNode, useRef, type MouseEvent, useState } from 'react';
+import { useAppsStore } from '@/store/apps/apps-store-provider';
 import { AppType } from '@/lib/constants/types';
+import { motion } from 'motion/react';
 import styles from './AppWrapper.module.scss';
 import Image from 'next/image';
+import clsx from 'clsx';
 
 interface PropsType {
-  children      : ReactNode,
-  data          : AppType,
-  setOpenedApps : Dispatch<SetStateAction<Array<AppType>>>,
-};
+  children: ReactNode;
+  data: AppType;
+}
 
-export default function AppWrapper({children, data, setOpenedApps}: PropsType) {
-  const handleClose = () => {
-    setOpenedApps(state => state.filter(el => el.id !== data.id))
+export default function AppWrapper({ children, data }: PropsType) {
+  const [position, setPosition]     = useState(data.coords ?? { x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+
+  const appWr      = useRef<HTMLDivElement>(null);
+  const startPos   = useRef({ x: 0, y: 0 });
+  const currentPos = useRef(data.coords ?? { x: 0, y: 0 });
+
+  const closeApp    = useAppsStore(s => s.closeApp);
+  const expandApp   = useAppsStore(s => s.expandApp);
+  const setCoords   = useAppsStore(s => s.setCoords);
+  const fullsizeApp = useAppsStore(s => s.fullsizeApp);
+
+  const classList = clsx({
+    '_appWr': true,
+    [styles.appWr]: true,
+    [styles.isFullscreen]: data.fullsized,
+  });
+
+  const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
+    if (data.fullsized) return;
+
+    setIsDragging(true);
+
+    document.querySelectorAll('._appWr').forEach(el =>
+      (el as HTMLElement).style.zIndex = '1'
+    );
+
+    const coords = data.coords ?? { x: 0, y: 0 };
+    currentPos.current = coords;
+
+    startPos.current = {
+      x: event.clientX - coords.x,
+      y: event.clientY - coords.y,
+    };
+
+    if (appWr.current)
+      appWr.current.style.zIndex = '2';
   };
 
-  return <div className={styles.appWr}>
-    <div className={styles.appHeader}>
-      <Image
-        src={`/icons/apps/${data.icon}.svg`}
-        alt=''
-        width={20}
-        height={20}
-        draggable={false}
-      />
+  const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+
+    const coords = {
+      x: event.clientX - startPos.current.x,
+      y: event.clientY - startPos.current.y,
+    };
+
+    currentPos.current = coords;
+    setPosition(coords);
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    setCoords(data.id, currentPos.current);
+  };
+
+  const handleClose = (event: MouseEvent) => {
+    event.stopPropagation();
+    closeApp(data.id)
+  };
+  const handleExpand = (event: MouseEvent) => {
+    event.stopPropagation();
+    expandApp(data.id)
+  };
+  const handleFullsize = (event: MouseEvent) => {
+    event.stopPropagation();
+    fullsizeApp(data.id)
+  };
+
+  return <motion.div
+    ref={appWr}
+    className={classList}
+    style={{
+      x: data.fullsized ? 0 : position.x,
+      y: data.fullsized ? 0 : position.y,
+    }}
+    initial={{ opacity: 0, scale: 0.5 }}
+    animate={{ opacity: 1, scale: 1, transition: { duration: 0.2, ease: [0.16, 1, 0.3, 1] }}}
+    exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2, ease: [0.16, 1, 0.3, 1] }}}
+  >
+    <div
+      className={styles.appHeader}
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
+    >
+      <Image src={data.iconSrc} alt="" width={20} height={20} draggable={false} />
       <h2>{data.title}</h2>
       <div className={`app-header-buttons ${styles.appHeaderButtons}`}>
-        <button>
-          <Image
-            src='/icons/expand.svg'
-            alt=''
-            width={10}
-            height={10}
-          />
+        <button onMouseDown={event => event.stopPropagation()} onClick={handleExpand}>
+          <Image draggable={false} src="/icons/expand.svg" alt="" width={10} height={10} />
         </button>
-        <button>
-          <Image
-            src='/icons/fullscreen.svg'
-            alt=''
-            width={10}
-            height={10}
-          />
+        <button onMouseDown={event => event.stopPropagation()} onClick={handleFullsize}>
+          <Image draggable={false} src="/icons/fullscreen.svg" alt="" width={10} height={10} />
         </button>
-        <button onClick={handleClose}>
-          <Image
-            src='/icons/cross.svg'
-            alt=''
-            width={10}
-            height={10}
-          />
+        <button onMouseDown={event => event.stopPropagation()} onClick={handleClose}>
+          <Image draggable={false} src="/icons/cross.svg" alt="" width={10} height={10} />
         </button>
       </div>
     </div>
     {children}
-  </div>
+  </motion.div>
 }
