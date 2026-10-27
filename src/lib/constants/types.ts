@@ -16,3 +16,14 @@ export interface AppType {
     y: number
   }
 };
+
+export interface HardSkills {
+  title : string,
+  icon  : string,
+  items : Array<string>,
+};
+
+export interface Languages {
+  title : string,
+  level : 'A1' | 'A2' | 'B1' | 'B2' | 'C' | 'Носитель',
+};

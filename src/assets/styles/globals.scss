@@ -7,6 +7,7 @@
   font-family: 'JetBrains';
   color: $green;
   cursor: none;
+  font-weight: 300;
 }
 
 body {
@@ -18,15 +19,23 @@ body {
   overflow: hidden;
 }
 
+button, input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
 .cursor {
   z-index: 9999;
   position: absolute;
   transform: translate(-100px, -100px);
   pointer-events: none;
-}
-
-button, input {
-  background-color: transparent;
-  border: none;
-  outline: none;
 }

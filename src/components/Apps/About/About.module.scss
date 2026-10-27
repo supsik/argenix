@@ -1,0 +1,112 @@
+.profileWr {
+  max-width: 860px;
+  height: fit-content;
+  padding: 24px;
+  display: flex;
+  gap: 32px;
+  margin: auto;
+}
+
+.profileContacts {
+  h2 {
+    font-size: 16px;
+    margin-top: 16px;
+    color: #FFF;
+  }
+
+  ul {
+    margin-top: 8;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  li a {
+    width: fit-content;
+    opacity: .5;
+    transition: .2s;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 14px;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.profileAbout {
+  & > h2 {
+    font-size: 24px;
+    font-weight: 400;
+    color: #FFF;
+  }
+
+  & > span {
+    display: block;
+    font-size: 13px;
+    font-weight: 200;
+    margin-top: 2px;
+  }
+
+  h3 {
+    font-size: 15px;
+    color: #FFF;
+  }
+}
+
+.profileSkills h3 {
+  margin-top: 16px;
+}
+
+.profileSkillBox {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+
+  &:first-of-type {
+    margin-top: 6px;
+  }
+}
+
+.profileSkillsWr {
+  margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+
+  li {
+    padding: 3px 10px 4px;
+    background-color: $green;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 200;
+    color: #FFF;
+  }
+}
+
+.profileSkillHeader {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 13px;
+}
+
+.profileAboutContent {
+  margin-top: 16px;
+
+  h3 {
+    font-size: 16px;
+    color: $green;
+  }
+
+  p {
+    margin-top: 6px;
+    color: #FFF;
+    font-size: 13px;
+    font-weight: 200;
+    opacity: .6;
+    line-height: 1.6;
+  }
+}

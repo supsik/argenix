@@ -16,8 +16,11 @@ export default function Panel() {
 
   useEffect(() => {
     const setTime = () => {
-      const time = new Date();
-      setCurrentTime(`${time.getHours()}:${time.getMinutes()}`)
+      const time    = new Date();
+      const hours   = time.getHours().toString().padStart(2, '0');
+      const minutes = time.getMinutes().toString().padStart(2, '0');
+
+      setCurrentTime(`${hours}:${minutes}`);
     };
 
     setTime();

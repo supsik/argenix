@@ -7,7 +7,7 @@ import Panel from "@/components/Panel/Panel";
 import "@/assets/styles/globals.scss";
 
 export const metadata: Metadata = {
-  title       : "Frontech",
+  title       : "Argenix",
   description : "Веб-разработчик и верстальщик. Разрабатка веб-сайтов под ключ. Индивидуальный подход, поддержка после сдачи проекта.",
   openGraph   : {}
 };

@@ -1,5 +1,5 @@
 import { AppType } from "./constants/types";
-import Profile from "@/components/Apps/Profile/Profile";
+import About from "@/components/Apps/About/About";
 
 const appData: AppType[] = [
   {
@@ -8,7 +8,7 @@ const appData: AppType[] = [
     title       : 'Обо мне',
     iconSrc     : '/icons/apps/profile.svg',
     isRemovable : true,
-    component   : Profile,
+    component   : About,
   },
 ]
 

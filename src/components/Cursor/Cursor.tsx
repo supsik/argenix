@@ -51,7 +51,7 @@ export default function Cursor() {
       el.style.transform = `translate(${event.clientX}px, ${event.clientY}px)`;
 
     const handleOver = (e: MouseEvent) => {
-      if ((e.target as HTMLElement).closest('.app-label-wr') || (e.target as HTMLElement).closest('button'))
+      if ((e.target as HTMLElement).closest('.app-label-wr, button, a'))
         setCursorType('pointer');
       else
         setCursorType('default');
