@@ -1,25 +1,27 @@
 'use client';
 
-import { useRef, type MouseEvent, type Key } from 'react';
+import { useRef, type MouseEvent } from 'react';
+import { AppType, ComponentAppType } from '@/lib/constants/types';
 import { useAppsStore } from '@/store/apps/apps-store-provider';
-import { AppType } from '@/lib/constants/types';
 import styles from './AppLabel.module.scss';
 import Image from 'next/image';
 
 interface PropsType {
-  app: AppType;
+  app         : AppType;
+  isDraggable : boolean;
 };
 
-export default function AppLabel({ app }: PropsType) {
+export default function AppLabel({ app, isDraggable }: PropsType) {
   const isDragging = useRef(false);
   const startPos   = useRef({ x: 0, y: 0 });
   const elementPos = useRef({ x: 0, y: 0 });
 
-  const openedApps = useAppsStore(s => s.openedApps);
-  const expandApp  = useAppsStore(s => s.expandApp);
-  const openApp    = useAppsStore(s => s.openApp);
+  const openApp = useAppsStore(s => s.openApp);
 
   const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
+    if (!isDraggable)
+      return;
+
     isDragging.current = true;
 
     document.querySelectorAll('.app-label-wr').forEach(el =>
@@ -51,11 +53,12 @@ export default function AppLabel({ app }: PropsType) {
     isDragging.current = false;
   };
 
-  const checkAppAdd = (app: AppType) => {
-    if (!openedApps.some(el => el.id == app.id))
-      openApp(app);
-    else
-      expandApp(app.id)
+  const handleOpenApp = (app: ComponentAppType) => {
+    
+    openApp({
+      ...app,
+      id: crypto.randomUUID(),
+    });
   };
 
   return (
@@ -65,16 +68,39 @@ export default function AppLabel({ app }: PropsType) {
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
-      onDoubleClick={() => checkAppAdd(app)}
     >
-      <Image
-        width={52}
-        height={52}
-        src={app.iconSrc}
-        alt={app.title}
-        draggable={false}
-      />
-      <h2>{app.title}</h2>
+      {app.type !== 'link' ?
+        <button onDoubleClick={() => handleOpenApp(app)}>
+          <Image
+            width={52}
+            height={52}
+            src={app.iconSrc || '/icons/apps/web.svg'}
+            alt={app.title}
+            draggable={false}
+          />
+          <h2>{app.title}</h2>
+        </button>
+        :
+        <a
+          href={app.href}
+          draggable={false}
+          target='_blank'
+          onClick={e => e.preventDefault()}
+          onDoubleClick={e => {
+            e.preventDefault();
+            window.open(app.href, '_blank', 'noopener,noreferrer');
+          }}
+        >
+          <Image
+            width={52}
+            height={52}
+            src={app.iconSrc || '/icons/apps/web.svg'}
+            alt={app.title}
+            draggable={false}
+          />
+          <h2>{app.title}</h2>
+        </a>
+      }
     </div>
   );
 }

@@ -1,0 +1,32 @@
+.folderWr {
+  width: 760px;
+  min-height: 460px;
+  padding: 6px 18px;
+}
+
+.folderContent {
+  margin-top: 16px;
+  display: flex;
+  padding-inline: 16px;
+  flex-wrap: wrap;
+  gap: 52px;
+
+  h2 {
+    font-size: 13px;
+    color: #FFF;
+    font-weight: 200;
+    position: absolute;
+    top: calc(100% + 2px);
+    min-width: fit-content;
+    text-align: center;
+    word-break: keep-all;
+  }
+}
+
+.folderLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  position: relative;
+}

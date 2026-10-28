@@ -1,14 +1,14 @@
 import { ReactNode, useRef, type MouseEvent, useState } from 'react';
+import { ComponentAppType } from '@/lib/constants/types';
 import { useAppsStore } from '@/store/apps/apps-store-provider';
-import { AppType } from '@/lib/constants/types';
 import { motion } from 'motion/react';
 import styles from './AppWrapper.module.scss';
 import Image from 'next/image';
 import clsx from 'clsx';
 
 interface PropsType {
-  children: ReactNode;
-  data: AppType;
+  children : ReactNode;
+  data     : ComponentAppType;
 }
 
 export default function AppWrapper({ children, data }: PropsType) {
@@ -19,25 +19,22 @@ export default function AppWrapper({ children, data }: PropsType) {
   const startPos   = useRef({ x: 0, y: 0 });
   const currentPos = useRef(data.coords ?? { x: 0, y: 0 });
 
-  const closeApp    = useAppsStore(s => s.closeApp);
+  const fullsizeApp = useAppsStore(s => s.fullsizeApp);
   const expandApp   = useAppsStore(s => s.expandApp);
   const setCoords   = useAppsStore(s => s.setCoords);
-  const fullsizeApp = useAppsStore(s => s.fullsizeApp);
+  const focusApp    = useAppsStore(s => s.focusApp);
+  const closeApp    = useAppsStore(s => s.closeApp);
 
   const classList = clsx({
-    '_appWr': true,
-    [styles.appWr]: true,
-    [styles.isFullscreen]: data.fullsized,
+    '_appWr'              : true,
+    [styles.appWr]        : true,
+    [styles.isFullscreen] : data.fullsized,
   });
 
   const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
     if (data.fullsized) return;
 
     setIsDragging(true);
-
-    document.querySelectorAll('._appWr').forEach(el =>
-      (el as HTMLElement).style.zIndex = '1'
-    );
 
     const coords = data.coords ?? { x: 0, y: 0 };
     currentPos.current = coords;
@@ -46,9 +43,6 @@ export default function AppWrapper({ children, data }: PropsType) {
       x: event.clientX - coords.x,
       y: event.clientY - coords.y,
     };
-
-    if (appWr.current)
-      appWr.current.style.zIndex = '2';
   };
 
   const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
@@ -87,10 +81,12 @@ export default function AppWrapper({ children, data }: PropsType) {
     style={{
       x: data.fullsized ? 0 : position.x,
       y: data.fullsized ? 0 : position.y,
+      zIndex: data.zIndex,
     }}
     initial={{ opacity: 0, scale: 0.5 }}
     animate={{ opacity: 1, scale: 1, transition: { duration: 0.2, ease: [0.16, 1, 0.3, 1] }}}
     exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2, ease: [0.16, 1, 0.3, 1] }}}
+    onMouseDown={() => focusApp(data.id)}
   >
     <div
       className={styles.appHeader}

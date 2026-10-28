@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { useAppsStore } from '@/store/apps/apps-store-provider';
+import { AppType } from '@/lib/constants/types';
 import styles from './Panel.module.scss';
 import Image from 'next/image';
 import Logo from '../Icons/Logo';
@@ -11,8 +12,23 @@ import clsx from 'clsx';
 export default function Panel() {
   const [currentTime, setCurrentTime] = useState<string>('');
 
+  const focusedApp = useAppsStore(s => s.focusedApp);
   const openedApps = useAppsStore(s => s.openedApps);
   const expandApp  = useAppsStore(s => s.expandApp);
+  const focusApp   = useAppsStore(s => s.focusApp);
+
+  const checkFocus = (app: AppType) => {
+    if (focusedApp && focusedApp.id == app.id && !app.expanded)
+      expandApp(app.id);
+
+    else if (app.expanded) {
+      expandApp(app.id);
+      focusApp(app.id);
+    }
+
+    else
+      focusApp(app.id);
+  };
 
   useEffect(() => {
     const setTime = () => {
@@ -48,7 +64,7 @@ export default function Panel() {
             initial={{ opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0, transition: { duration: .25 }}}
             exit={{ opacity: 0, y: 4, transition: { duration: .2 }}}
-            onClick={() => expandApp(el.id)}
+            onClick={() => checkFocus(el)}
           >
             <Image
               src={el.iconSrc}

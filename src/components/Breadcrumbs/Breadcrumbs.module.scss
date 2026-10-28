@@ -1,0 +1,15 @@
+.breadcrumbsWr {
+  ul {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+    li {
+      font-size: 12px;
+
+      img {
+        margin-right: 4px;
+      }
+    }
+  }
+}

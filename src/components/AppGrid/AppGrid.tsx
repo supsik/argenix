@@ -1,8 +1,8 @@
 'use client';
 
+import { ComponentAppType } from '@/lib/constants/types';
 import { AnimatePresence } from 'motion/react';
 import { useAppsStore } from '@/store/apps/apps-store-provider';
-import { AppType } from '@/lib/constants/types';
 import AppWrapper from '../AppWrapper/AppWrapper';
 import AppLabel from '../AppLabel/AppLabel';
 import appData from '@/lib/app-list';
@@ -15,9 +15,10 @@ export default function AppGrid() {
     {appData.map(app => <AppLabel
       key={app.id}
       app={app}
+      isDraggable={true}
     />)}
     <AnimatePresence>
-      {openedApps.map((app: AppType) => {
+      {openedApps.map((app: ComponentAppType) => {
         return !app.expanded && 
         <AppWrapper key={app.id} data={app}>
           <app.component />

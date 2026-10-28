@@ -1,6 +1,6 @@
-import { HardSkills, Languages } from "./constants/types";
+import { HardSkillsType, LanguagesType } from "./constants/types";
 
-export const hardSkills: HardSkills[] = [
+export const hardSkills: HardSkillsType[] = [
   {
     title : 'Frontend',
     icon  : 'frontend',
@@ -36,7 +36,7 @@ export const hardSkills: HardSkills[] = [
   },
 ];
 
-export const languages: Languages[] = [
+export const languages: LanguagesType[] = [
   {
     title: 'Английский',
     level: 'B2',

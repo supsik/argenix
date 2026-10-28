@@ -34,6 +34,7 @@
 .panelOpenedItems {
   height: 100%;
   position: absolute;
+  display: flex;
   transition: .25s;
   left: 50%;
   transform: translateX(-50%);
