@@ -24,9 +24,13 @@ export default function AppLabel({ app, isDraggable }: PropsType) {
 
     isDragging.current = true;
 
+    const elem = event.currentTarget;
+
     document.querySelectorAll('.app-label-wr').forEach(el =>
       (el as HTMLElement).style.zIndex = '1'
     );
+
+    elem.style.zIndex = '2';
 
     startPos.current = {
       x: event.clientX - elementPos.current.x,
@@ -45,7 +49,6 @@ export default function AppLabel({ app, isDraggable }: PropsType) {
       y: event.clientY - startPos.current.y,
     };
 
-    elem.style.zIndex    = '2';
     elem.style.transform = `translate(${elementPos.current.x}px, ${elementPos.current.y}px)`;
   };
 
