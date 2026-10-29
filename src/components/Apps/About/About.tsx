@@ -8,7 +8,7 @@ export default function Profile() {
       <Image
         width={220}
         height={220}
-        src='/images/profile.png'
+        src='/images/profile.webp'
         alt=''
       />
       <div className={styles.profileContacts}>
@@ -53,6 +53,12 @@ export default function Profile() {
       </div>
     </div>
     <div className={styles.profileAbout}>
+      <Image
+        width={400}
+        height={400}
+        src='/images/profile.webp'
+        alt=''
+      />
       <h2>Болиев Хасан</h2>
       <span>Frontend-разработчик</span>
       <div className={styles.profileSkills}>
@@ -86,6 +92,46 @@ export default function Profile() {
         <p>Я frontend-разработчик с большим опытом, работаю с React / Next.js и Vue / Nuxt. Мне нравится создавать удобные интерфейсы и превращать идеи в работающие проекты.</p>
         <p>На этом сайте ты можешь узнать информацию обо мне, посмотреть мои проекты и поближе познакомиться с тем, чем я занимаюсь.</p>
         <p>Если у тебя есть интересная идея, предложение или ты просто хочешь пообщаться — буду рад связи!</p>
+      </div>
+      <div className={styles.profileContacts}>
+        <h2>Контакты:</h2>
+        <ul>
+          <li>
+            <a href="https://t.me/fr0ntech" target='_blank'>
+              <Image
+                width={14}
+                height={14}
+                src='/icons/socmedia/telegram.svg'
+                alt=''
+              />
+              @fr0ntech
+            </a>
+          </li>
+          <li>
+            <a href="mailto:frontech@mail.ru" target='_blank'>
+              <Image
+                width={14}
+                height={14}
+                src='/icons/socmedia/mail.svg'
+                alt=''
+                draggable={false}
+              />
+              @frontech
+            </a>
+          </li>
+          <li>
+            <a href="tel:+79931845069" target='_blank'>
+              <Image
+                width={14}
+                height={14}
+                src='/icons/socmedia/phone.svg'
+                alt=''
+                draggable={false}
+              />
+              +7 993 184-50-69
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

@@ -1,7 +1,12 @@
 .folderWr {
   width: 760px;
   min-height: 460px;
-  padding: 6px 18px;
+  padding-block: 6px;
+
+  @include mq($tablet) {
+    width: 100%;
+    min-height: 100%;
+  }
 }
 
 .folderContent {

@@ -1,6 +1,4 @@
 .appWr {
-  min-width: 480px;
-  min-height: 290px;
   background-color: $dark50;
   pointer-events: all;
   position: absolute;
@@ -29,7 +27,7 @@
 
     .appContent {
       padding-inline: 12px;
-      max-height: calc(100% - 36px);
+      height: calc(100% - 36px);
       overflow: auto;
     }
 

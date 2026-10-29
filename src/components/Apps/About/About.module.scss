@@ -22,7 +22,7 @@
   }
 
   @include mq($tablet) {
-    
+    display: none;
   }
 }
 
@@ -53,9 +53,27 @@
       opacity: 1;
     }
   }
+
+  @include mq($tablet) {
+    li a {
+      font-size: 12px;
+      gap: 4px;
+    }
+  }
 }
 
 .profileAbout {
+  .profileContacts {
+    display: none;
+  }
+
+  & > img {
+    width: 40%;
+    height: auto;
+    display: none;
+    margin: auto;
+  }
+
   & > h2 {
     font-size: clamp(1.125rem, 0.6724rem + 1.7241vw, 1.5rem);
     font-weight: 400;
@@ -72,6 +90,33 @@
   h3 {
     font-size: 15px;
     color: #FFF;
+  }
+
+  @include mq($tablet) {
+    .profileContacts {
+      display: block;
+
+      ul {
+        max-width: 460px;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+
+    & > img {
+      display: block;
+      border-radius: 100%;
+    }
+
+    & > h2 {
+      margin-top: 16px;
+    }
+
+    & > h2,
+    & > span {
+      width: fit-content;
+      margin-inline: auto;
+    }
   }
 }
 
@@ -96,7 +141,7 @@
   gap: 6px;
 
   li {
-    padding: 3px 10px 4px;
+    padding: 4px 10px;
     background-color: $green;
     border-radius: 30px;
     font-size: 11px;
