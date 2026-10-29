@@ -1,5 +1,6 @@
 import { ReactNode, useRef, type MouseEvent, useState } from 'react';
 import { ComponentAppType } from '@/lib/constants/types';
+import { useWindowWidth } from '@react-hook/window-size';
 import { useAppsStore } from '@/store/apps/apps-store-provider';
 import { motion } from 'motion/react';
 import styles from './AppWrapper.module.scss';
@@ -12,6 +13,8 @@ interface PropsType {
 }
 
 export default function AppWrapper({ children, data }: PropsType) {
+  const width = useWindowWidth();
+
   const [position, setPosition]     = useState(data.coords ?? { x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
 
@@ -109,6 +112,8 @@ export default function AppWrapper({ children, data }: PropsType) {
         </button>
       </div>
     </div>
-    {children}
+    <div className={styles.appContent}>
+      {children}
+    </div>
   </motion.div>
 }

@@ -8,6 +8,10 @@
   color: $green;
   cursor: none;
   font-weight: 300;
+
+  @include mq($tablet) {
+    cursor: default;
+  }
 }
 
 body {
@@ -38,4 +42,8 @@ a {
   position: absolute;
   transform: translate(-100px, -100px);
   pointer-events: none;
+
+  @include mq($tablet) {
+    display: none;
+  }
 }

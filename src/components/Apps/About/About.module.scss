@@ -1,10 +1,29 @@
 .profileWr {
   max-width: 860px;
   height: fit-content;
-  padding: 24px;
-  display: flex;
+  padding-block: 24px;
+  display: grid;
+  grid-template-columns: 220px 1fr;
   gap: 32px;
   margin: auto;
+
+  @include mq($tablet) {
+    grid-template-columns: 1fr;
+    padding-block: 18px;  
+    gap: 16px;
+  }
+}
+
+.profileAside {
+  & > img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+
+  @include mq($tablet) {
+    
+  }
 }
 
 .profileContacts {
@@ -38,14 +57,14 @@
 
 .profileAbout {
   & > h2 {
-    font-size: 24px;
+    font-size: clamp(1.125rem, 0.6724rem + 1.7241vw, 1.5rem);
     font-weight: 400;
     color: #FFF;
   }
 
   & > span {
     display: block;
-    font-size: 13px;
+    font-size: clamp(0.625rem, 0.3987rem + 0.8621vw, 0.8125rem);
     font-weight: 200;
     margin-top: 2px;
   }
