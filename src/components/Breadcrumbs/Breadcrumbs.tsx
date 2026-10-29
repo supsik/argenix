@@ -1,21 +1,26 @@
-import styles from './Breadcrumbs.module.scss';
-import Image from 'next/image';
+import { FolderType } from '@/lib/constants/types';
+import styles         from './Breadcrumbs.module.scss';
+import Home           from '@/components/Icons/Home';
 
-export default function Breadcrumbs() {
+interface PropsType {
+  data       : FolderType[],
+  onNavigate : (id: number) => void,
+};
+
+export default function Breadcrumbs({data, onNavigate}: PropsType) {
   return <nav className={styles.breadcrumbsWr}>
     <ul>
       <li>
-        <button>
-          <Image
-            src='/icons/home.svg'
-            alt=''
-            width={14}
-            height={12}
-            draggable={false}
-          />
+        <button onClick={() => onNavigate(-1)}>
+          <Home />
           Главная
         </button>
       </li>
+      {data.map((item, i) => <li key={item.id}>
+        <button onClick={() => onNavigate(i)}>
+          {item.title}
+        </button>
+      </li>)}
     </ul>
   </nav>
 }

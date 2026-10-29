@@ -40,4 +40,6 @@ export interface FolderType {
   id    : Key;
   title : string;
   items : Array<AppType | FolderType>;
-}
+};
+
+export type BreadcrumbsType = Pick<FolderType, 'id' | 'title'>;

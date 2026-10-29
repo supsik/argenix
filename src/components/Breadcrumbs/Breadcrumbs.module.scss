@@ -6,9 +6,34 @@
 
     li {
       font-size: 12px;
+      position: relative;
 
-      img {
+      button {
+        color: $dark-green;
+        transition: .3s;
+      }
+
+      &:not(&:first-of-type)::before {
+        width: 4px;
+        height: 7px;
+        background-image: url('/icons/arrow.svg');
+        display: block;
+        position: absolute;
+        left: -14px;
+        top: 50%;
+        transform: translateY(-50%);
+        content: '';
+      }
+
+      &:last-of-type {
+        button {
+          color: $green;
+        }
+      }
+
+      svg {
         margin-right: 4px;
+        color: inherit;
       }
     }
   }
