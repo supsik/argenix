@@ -7,14 +7,7 @@ export const folderData: FolderType = {
     {
       id    : 'potrfolio',
       title : 'Портфолио',
-      items: [
-        {
-          id    : 'test',
-          title : 'test',
-          type  : 'folder',
-          items : []
-        },
-      ]
+      items : []
     },
   ]
 }

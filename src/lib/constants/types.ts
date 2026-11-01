@@ -25,6 +25,8 @@ export interface ComponentAppType extends BaseAppType {
 
 export type AppType = LinkAppType | ComponentAppType;
 
+
+
 export interface HardSkillsType {
   title : string,
   icon  : string,
