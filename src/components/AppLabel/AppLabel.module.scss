@@ -21,3 +21,14 @@
     font-weight: 400;
   }
 }
+
+.appImageLabel {
+  height: 52px;
+  display: grid;
+  place-items: center;
+
+  img {
+    object-fit: cover;
+    object-position: top;
+  }
+}

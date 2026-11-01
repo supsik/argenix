@@ -1,19 +1,25 @@
-import { ReactNode, useRef, type MouseEvent, useState } from 'react';
-import { ComponentAppType } from '@/lib/constants/types';
-import { useWindowWidth } from '@react-hook/window-size';
+import {
+  ReactNode,
+  useRef,
+  type MouseEvent,
+  useState
+} from 'react';
+
 import { useAppsStore } from '@/store/apps/apps-store-provider';
-import { motion } from 'motion/react';
-import styles from './AppWrapper.module.scss';
-import Image from 'next/image';
-import clsx from 'clsx';
+import { AppType }      from '@/lib/constants/types';
+import { appInfo }      from '@/lib/app-list';
+import { motion }       from 'motion/react';
+import styles           from './AppWrapper.module.scss';
+import Image            from 'next/image';
+import clsx             from 'clsx';
 
 interface PropsType {
   children : ReactNode;
-  data     : ComponentAppType;
+  data     : AppType;
 }
 
 export default function AppWrapper({ children, data }: PropsType) {
-  const width = useWindowWidth();
+  const iconSrc: string = data.type === 'exe' ? data.iconSrc : appInfo[data.type].iconSrc;
 
   const [position, setPosition]     = useState(data.coords ?? { x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
@@ -23,15 +29,22 @@ export default function AppWrapper({ children, data }: PropsType) {
   const currentPos = useRef(data.coords ?? { x: 0, y: 0 });
 
   const fullsizeApp = useAppsStore(s => s.fullsizeApp);
+  const focusedApp  = useAppsStore(s => s.focusedApp);
   const expandApp   = useAppsStore(s => s.expandApp);
   const setCoords   = useAppsStore(s => s.setCoords);
   const focusApp    = useAppsStore(s => s.focusApp);
   const closeApp    = useAppsStore(s => s.closeApp);
 
-  const classList = clsx({
-    '_appWr'              : true,
+  const appClassList = clsx({
     [styles.appWr]        : true,
+    [styles.isFocused]    : data.id == focusedApp?.id,
     [styles.isFullscreen] : data.fullsized,
+  });
+
+  const appContentClassList = clsx({
+    [styles.appContent]   : true,
+    [styles.isFullscreen] : data.fullsized,
+    [styles.imageWr]      : data.type == 'image',
   });
 
   const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
@@ -80,7 +93,7 @@ export default function AppWrapper({ children, data }: PropsType) {
 
   return <motion.div
     ref={appWr}
-    className={classList}
+    className={appClassList}
     style={{
       x: data.fullsized ? 0 : position.x,
       y: data.fullsized ? 0 : position.y,
@@ -98,7 +111,13 @@ export default function AppWrapper({ children, data }: PropsType) {
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
     >
-      <Image src={data.iconSrc} alt="" width={20} height={20} draggable={false} />
+      <Image
+        src={iconSrc}
+        alt=""
+        width={20}
+        height={20}
+        draggable={false}
+      />
       <h2>{data.title}</h2>
       <div className={`app-header-buttons ${styles.appHeaderButtons}`}>
         <button onMouseDown={event => event.stopPropagation()} onClick={handleExpand}>
@@ -112,7 +131,7 @@ export default function AppWrapper({ children, data }: PropsType) {
         </button>
       </div>
     </div>
-    <div className={styles.appContent}>
+    <div className={appContentClassList}>
       {children}
     </div>
   </motion.div>

@@ -15,8 +15,29 @@
     }
   }
 
+  &.isFullscreen,
+  &.isFocused {
+    .appHeader {
+      background-color: #000;
+    }
+  }
+
   .appContent {
     padding-inline: 24px;
+
+    &.isFullscreen {
+      height: calc(100% - 36px);
+
+      & > div {
+        height: 100%;
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+
+  .imageWr {
+    padding: 0;
   }
 
   @include mq($tablet) {

@@ -1,32 +1,47 @@
 import { Key, FunctionComponent } from "react";
 
-type AppTypes = 'txt' | 'pdf' | 'exe' | 'img' | 'link' | 'folder' | null;
+// app types
+type SimpleAppsTypes = 'folder';
 
 interface BaseAppType {
-  id          : Key;
-  title       : string;
-  expanded?   : boolean;
-  fullsized?  : boolean;
-  zIndex?     : number,
-  coords?     : { x: number; y: number };
-}
+  id         : Key;
+  title      : string;
+  expanded?  : boolean;
+  fullsized? : boolean;
+  zIndex?    : number;
+  coords?    : { x: number; y: number };
+};
 
-export interface LinkAppType extends BaseAppType {
-  type       : 'link';
-  href       : string;
-  iconSrc?   : string;
-}
-
-export interface ComponentAppType extends BaseAppType {
-  type      : Exclude<AppTypes, 'link'>;
+export interface ExeAppType extends BaseAppType {
+  type      : 'exe';
   iconSrc   : string;
   component : FunctionComponent;
-}
+};
 
-export type AppType = LinkAppType | ComponentAppType;
+export interface LinkAppType extends BaseAppType {
+  type     : 'link';
+  href     : string;
+  iconSrc? : string;
+};
 
+export interface ImageAppType extends BaseAppType {
+  type     : 'image',
+  imageSrc : string,
+};
 
+export interface SimpleAppsType extends BaseAppType {
+  type: SimpleAppsTypes;
+};
 
+export type AppType = ExeAppType | ImageAppType | SimpleAppsType;
+
+export interface FolderType {
+  id    : Key;
+  title : string;
+  items : Array<AppType | LinkAppType | FolderType>;
+};
+
+//other types
 export interface HardSkillsType {
   title : string,
   icon  : string,
@@ -36,12 +51,6 @@ export interface HardSkillsType {
 export interface LanguagesType {
   title : string,
   level : 'A1' | 'A2' | 'B1' | 'B2' | 'C' | 'Носитель',
-};
-
-export interface FolderType {
-  id    : Key;
-  title : string;
-  items : Array<AppType | FolderType>;
 };
 
 export type BreadcrumbsType = Pick<FolderType, 'id' | 'title'>;

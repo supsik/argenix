@@ -1,13 +1,14 @@
 'use client';
 
 import { motion, AnimatePresence } from 'motion/react';
-import { useEffect, useState } from 'react';
-import { useAppsStore } from '@/store/apps/apps-store-provider';
-import { AppType } from '@/lib/constants/types';
-import styles from './Panel.module.scss';
-import Image from 'next/image';
-import Logo from '../Icons/Logo';
-import clsx from 'clsx';
+import { useEffect, useState }     from 'react';
+import { useAppsStore }            from '@/store/apps/apps-store-provider';
+import { AppType }                 from '@/lib/constants/types';
+import { appInfo }                 from '@/lib/app-list';
+import styles                      from './Panel.module.scss';
+import Image                       from 'next/image';
+import Logo                        from '../Icons/Logo';
+import clsx                        from 'clsx';
 
 export default function Panel() {
   const [currentTime, setCurrentTime] = useState<string>('');
@@ -58,6 +59,7 @@ export default function Panel() {
           const classList = clsx(styles.panelItem, {
             [styles.expanded]: el.expanded,
           });
+          const iconSrc: string = el.type === 'exe' ? el.iconSrc : appInfo[el.type].iconSrc;
           return <motion.button
             className={classList}
             key={el.id}
@@ -67,7 +69,7 @@ export default function Panel() {
             onClick={() => checkFocus(el)}
           >
             <Image
-              src={el.iconSrc}
+              src={iconSrc}
               alt=''
               width={24}
               height={24}

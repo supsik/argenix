@@ -1,17 +1,24 @@
 'use client';
 
 import { useRef, type MouseEvent } from 'react';
-import { AppType, ComponentAppType } from '@/lib/constants/types';
-import { useAppsStore } from '@/store/apps/apps-store-provider';
-import styles from './AppLabel.module.scss';
-import Image from 'next/image';
+import { AppType, LinkAppType }    from '@/lib/constants/types';
+import { useAppsStore }            from '@/store/apps/apps-store-provider';
+import { appInfo }                 from '@/lib/app-list';
+import styles                      from './AppLabel.module.scss';
+import Image                       from 'next/image';
 
 interface PropsType {
-  app         : AppType;
+  app         : AppType | LinkAppType;
   isDraggable : boolean;
 };
 
 export default function AppLabel({ app, isDraggable }: PropsType) {
+  const imageSrc: string | undefined = app.type === 'link' || app.type === 'exe' ?
+    app.iconSrc :
+    appInfo[app.type].iconSrc;
+
+  const iconSrc = imageSrc || '/icons/apps/web.svg';
+
   const isDragging = useRef(false);
   const startPos   = useRef({ x: 0, y: 0 });
   const elementPos = useRef({ x: 0, y: 0 });
@@ -56,8 +63,7 @@ export default function AppLabel({ app, isDraggable }: PropsType) {
     isDragging.current = false;
   };
 
-  const handleOpenApp = (app: ComponentAppType) => {
-    
+  const handleOpenApp = (app: AppType) => {
     openApp({
       ...app,
       id: crypto.randomUUID(),
@@ -74,13 +80,25 @@ export default function AppLabel({ app, isDraggable }: PropsType) {
     >
       {app.type !== 'link' ?
         <button onDoubleClick={() => handleOpenApp(app)}>
-          <Image
-            width={52}
-            height={52}
-            src={app.iconSrc || '/icons/apps/web.svg'}
-            alt={app.title}
-            draggable={false}
-          />
+          {
+            app.type !== 'image' ?
+              <Image
+                width={52}
+                height={52}
+                src={iconSrc}
+                alt={app.title}
+                draggable={false}
+              /> :
+              <div className={styles.appImageLabel}>
+                <Image
+                  width={52}
+                  height={42}
+                  src={app.imageSrc}
+                  alt={app.title}
+                  draggable={false}
+                />
+              </div>
+          }
           <h2>{app.title}</h2>
         </button>
         :
@@ -97,7 +115,7 @@ export default function AppLabel({ app, isDraggable }: PropsType) {
           <Image
             width={52}
             height={52}
-            src={app.iconSrc || '/icons/apps/web.svg'}
+            src={iconSrc}
             alt={app.title}
             draggable={false}
           />

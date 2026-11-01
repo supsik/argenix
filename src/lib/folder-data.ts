@@ -7,7 +7,26 @@ export const folderData: FolderType = {
     {
       id    : 'potrfolio',
       title : 'Портфолио',
-      items : []
+      items : [
+        {
+          id    : 'serenity',
+          title : 'Serenity',
+          items : [
+            {
+              id       : 'serenity-frame',
+              title    : 'Serenity Frame',
+              imageSrc : '/images/portfolio/serenity/frame.webp',
+              type     : 'image',
+            },
+            {
+              id    : 'serenity-link',
+              title : 'Serenity',
+              href  : 'https://serenity.agency/',
+              type  : 'link',
+            }
+          ]
+        }
+      ]
     },
   ]
 }
