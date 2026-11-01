@@ -24,6 +24,10 @@
 
   .appContent {
     padding-inline: 24px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: $green black;
 
     &.isFullscreen {
       height: calc(100% - 36px);
