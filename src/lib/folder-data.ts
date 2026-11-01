@@ -1,3 +1,4 @@
+import { serenityReadmeData } from "./readme-files/serenity";
 import { FolderType } from "./constants/types";
 
 export const folderData: FolderType = {
@@ -19,9 +20,27 @@ export const folderData: FolderType = {
               type     : 'image',
             },
             {
+              id      : 'serenity-readme',
+              title   : 'О проекте',
+              type    : 'txt',
+              content : serenityReadmeData,
+            },
+            {
               id    : 'serenity-link',
               title : 'Serenity',
               href  : 'https://serenity.agency/',
+              type  : 'link',
+            }
+          ]
+        },
+        {
+          id    : 'vib',
+          title : 'ВИБ',
+          items : [
+            {
+              id    : 'vib-link',
+              title : 'ВИБ',
+              href  : 'https://vkusnoibistro.com/application/',
               type  : 'link',
             }
           ]

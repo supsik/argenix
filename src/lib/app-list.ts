@@ -2,6 +2,7 @@ import CustomImage from "@/components/Apps/CustomImage/CustomImage";
 import { AppType } from "./constants/types";
 import Folder      from "@/components/Apps/Folder/Folder";
 import About       from "@/components/Apps/About/About";
+import Txt         from "@/components/Apps/Txt/Txt";
 
 export const appInfo = {
   folder: {
@@ -11,6 +12,10 @@ export const appInfo = {
   image: {
     iconSrc   : '/icons/apps/image.svg',
     component : CustomImage,
+  },
+  txt: {
+    iconSrc   : '/icons/apps/txt.svg',
+    component : Txt,
   }
 };
 
@@ -25,7 +30,7 @@ const appData: AppType[] = [
   {
     id    : 1,
     type  : 'folder',
-    title : 'Портфолио',
+    title : 'Файлы',
   },
 ];
 

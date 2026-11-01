@@ -29,11 +29,16 @@ export interface ImageAppType extends BaseAppType {
   imageSrc : string,
 };
 
+export interface TxtAppType extends BaseAppType {
+  type    : 'txt',
+  content : string,
+};
+
 export interface SimpleAppsType extends BaseAppType {
   type: SimpleAppsTypes;
 };
 
-export type AppType = ExeAppType | ImageAppType | SimpleAppsType;
+export type AppType = ExeAppType | ImageAppType | TxtAppType | SimpleAppsType;
 
 export interface FolderType {
   id    : Key;

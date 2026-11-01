@@ -1,0 +1,12 @@
+export const serenityReadmeData = `
+  <h2>Сайт для маркетинговой организации — Serenity</h2>
+  <p><strong>Команда:</strong> 2 Frontend (я), 1 Backend, 1 Designer, 1 QA, 1 Manager.</p>
+  <p><strong>Обязанности и достижения:</strong></p>
+  <ul>
+    <li>Разработал и поддерживал магазин на Next.js с SSR, удерживая PageSpeed в отметке 90+ по производительности и SEO.</li>
+    <li>Покрыл ключевые пользовательские сценарии автотестами на Jest с покрытием около 60–70%, сократив количество регрессий после релизов на 50%.</li>
+    <li>Мигрировал frontend на TypeScript и унифицировал управление состоянием на Zustand, сократив время реализации типовых функций на 30%.</li>
+    <li>Верстал адаптивные и семантические интерфейсы по макетам Figma с использованием HTML5, CSS/SCSS, Flexbox и Grid.</li>
+  </ul>
+  <p><strong>Технологии:</strong> React 18, Next.js, TypeScript, Zustand, Jest.</p>
+`;

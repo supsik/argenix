@@ -20,30 +20,43 @@ export default function AppGrid() {
     <div className={styles.openedAppsWr}>
       <AnimatePresence>
         {openedApps.map((app: AppType) => {
-          if (app.type === 'exe') {
-            const Comp = app.component;
-            return !app.expanded && (
-              <AppWrapper key={app.id} data={app}>
-                <Comp />
-              </AppWrapper>
-            );
-          }
+          switch (app.type) {
+            case 'exe': {
+              const Comp = app.component;
+              return !app.expanded && (
+                <AppWrapper key={app.id} data={app}>
+                  <Comp />
+                </AppWrapper>
+              );
+            };
+              
+            case 'image': {
+              const Comp = appInfo.image.component;
+              return !app.expanded && (
+                <AppWrapper key={app.id} data={app}>
+                  <Comp imageSrc={app.imageSrc} />
+                </AppWrapper>
+              );
+            };
 
-          if (app.type === 'image') {
-            const Comp = appInfo.image.component;
-            return !app.expanded && (
-              <AppWrapper key={app.id} data={app}>
-                <Comp imageSrc={app.imageSrc} />
-              </AppWrapper>
-            );
+            case 'txt': {
+              const Comp = appInfo.txt.component;
+              return !app.expanded && (
+                <AppWrapper key={app.id} data={app}>
+                  <Comp data={app.content} />
+                </AppWrapper>
+              );
+            };
+          
+            default: {
+              const Comp = appInfo[app.type].component;
+              return !app.expanded && (
+                <AppWrapper key={app.id} data={app}>
+                  <Comp />
+                </AppWrapper>
+              );
+            };
           }
-
-          const Comp = appInfo[app.type].component;
-          return !app.expanded && (
-            <AppWrapper key={app.id} data={app}>
-              <Comp />
-            </AppWrapper>
-          );
         })}
       </AnimatePresence>
     </div>
