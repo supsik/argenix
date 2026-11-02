@@ -1,5 +1,5 @@
-import { serenityReadmeData } from "./readme-files/serenity";
 import { FolderType } from "./constants/types";
+import readme         from "./readme-data";
 
 export const folderData: FolderType = {
   id    : 'main',
@@ -14,22 +14,22 @@ export const folderData: FolderType = {
           title : 'Serenity',
           items : [
             {
-              id       : 'serenity-frame',
-              title    : 'Serenity Frame',
-              imageSrc : '/images/portfolio/serenity/frame.webp',
-              type     : 'image',
+              id    : 'serenity-link',
+              title : 'Serenity',
+              href  : 'https://serenity.agency/',
+              type  : 'link',
             },
             {
               id      : 'serenity-readme',
               title   : 'О проекте',
               type    : 'txt',
-              content : serenityReadmeData,
+              content : readme.serenity,
             },
             {
-              id    : 'serenity-link',
-              title : 'Serenity',
-              href  : 'https://serenity.agency/',
-              type  : 'link',
+              id       : 'serenity-frame',
+              title    : 'Serenity Frame',
+              imageSrc : '/images/portfolio/serenity/frame.webp',
+              type     : 'image',
             }
           ]
         },
@@ -42,7 +42,67 @@ export const folderData: FolderType = {
               title : 'ВИБ',
               href  : 'https://vkusnoibistro.com/application/',
               type  : 'link',
+            },
+            {
+              id      : 'vib-readme',
+              title   : 'О проекте',
+              type    : 'txt',
+              content : readme.vib,
+            },
+          ]
+        },
+        {
+          id    : 'lineaflex',
+          title : 'Lineaflex',
+          items : [
+            {
+              id    : 'lineaflex-link',
+              title : 'Lineaflex',
+              href  : 'https://www.lineaflex.ru/',
+              type  : 'link',
+            },
+            {
+              id      : 'lineaflex-readme',
+              title   : 'О проекте',
+              type    : 'txt',
+              content : readme.vib,
+            },
+          ]
+        },
+        {
+          id    : 'sport-print',
+          title : 'Спорт Принт',
+          items : [
+            {
+              id    : 'sport-print-link',
+              title : 'Спорт Принт',
+              href  : 'https://sport-print.ru/',
+              type  : 'link',
+            },
+            {
+              id      : 'sport-print-readme',
+              title   : 'О проекте',
+              type    : 'txt',
+              content : readme.sportPrint,
+            },
+            {
+              id       : 'sport-print-frame',
+              title    : 'Спорт Принт Frame',
+              imageSrc : '/images/portfolio/sport-print/frame.webp',
+              type     : 'image',
             }
+          ]
+        },
+        {
+          id    : 'argenix',
+          title : 'Argenix',
+          items : [
+            {
+              id      : 'argenix-readme',
+              title   : 'О проекте',
+              type    : 'txt',
+              content : readme.argenix,
+            },
           ]
         }
       ]

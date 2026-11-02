@@ -1,7 +1,10 @@
 .txtWr {
   width: 620px;
   max-height: 620px;
-  padding-block: 16px 24px;
+
+  & > div {
+    padding-block: 16px 24px;
+  }
 
   h2 {
     font-size: 18px;
