@@ -16,6 +16,9 @@ export const appInfo = {
   txt: {
     iconSrc   : '/icons/apps/txt.svg',
     component : Txt,
+  },
+  pdf: {
+    iconSrc: '/icons/apps/pdf.svg',
   }
 };
 

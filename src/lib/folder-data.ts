@@ -107,5 +107,11 @@ export const folderData: FolderType = {
         }
       ]
     },
+    {
+      id    : 'resume',
+      title : 'Резюме',
+      type  : 'pdf',
+      href  : '/resume.pdf'
+    }
   ]
 }

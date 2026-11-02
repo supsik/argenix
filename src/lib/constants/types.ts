@@ -34,11 +34,21 @@ export interface TxtAppType extends BaseAppType {
   content : string,
 };
 
+export interface TxtAppType extends BaseAppType {
+  type    : 'txt',
+  content : string,
+};
+
+export interface PdfAppType extends BaseAppType {
+  type: 'pdf',
+  href: string,
+};
+
 export interface SimpleAppsType extends BaseAppType {
   type: SimpleAppsTypes;
 };
 
-export type AppType = ExeAppType | ImageAppType | TxtAppType | SimpleAppsType;
+export type AppType = ExeAppType | ImageAppType | TxtAppType | SimpleAppsType | PdfAppType;
 
 export interface FolderType {
   id    : Key;
