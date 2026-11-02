@@ -55,4 +55,20 @@
   &.expanded {
     border-color: transparent;
   }
+
+  &.focused {
+    background-color: rgba($green, .3);
+  }
+}
+
+.panelExpandAll {
+  user-select: none;
+  margin-left: auto;
+  margin-right: 24px;
+  opacity: .3;
+  transition: .15s;
+
+  &:hover {
+    opacity: 1;
+  }
 }

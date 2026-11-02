@@ -1,14 +1,14 @@
 'use client';
 
-import { useRef, type MouseEvent } from 'react';
-import { AppType, LinkAppType }    from '@/lib/constants/types';
-import { useAppsStore }            from '@/store/apps/apps-store-provider';
-import { appInfo }                 from '@/lib/app-list';
-import styles                      from './AppLabel.module.scss';
-import Image                       from 'next/image';
+import { AppType, LinkAppType, PdfAppType } from '@/lib/constants/types';
+import { useRef, type MouseEvent }          from 'react';
+import { useAppsStore }                     from '@/store/apps/apps-store-provider';
+import { appInfo }                          from '@/lib/app-list';
+import styles                               from './AppLabel.module.scss';
+import Image                                from 'next/image';
 
 interface PropsType {
-  app         : AppType | LinkAppType;
+  app         : AppType | LinkAppType | PdfAppType;
   isDraggable : boolean;
 };
 

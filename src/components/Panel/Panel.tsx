@@ -16,6 +16,7 @@ export default function Panel() {
   const focusedApp = useAppsStore(s => s.focusedApp);
   const openedApps = useAppsStore(s => s.openedApps);
   const expandApp  = useAppsStore(s => s.expandApp);
+  const expandAll  = useAppsStore(s => s.expandAll);
   const focusApp   = useAppsStore(s => s.focusApp);
 
   const checkFocus = (app: AppType) => {
@@ -57,7 +58,8 @@ export default function Panel() {
       <AnimatePresence>
         {openedApps.map(el => {
           const classList = clsx(styles.panelItem, {
-            [styles.expanded]: el.expanded,
+            [styles.expanded] : el.expanded,
+            [styles.focused]  : el.id === focusedApp?.id,
           });
           const iconSrc: string = el.type === 'exe' ? el.iconSrc : appInfo[el.type].iconSrc;
           return <motion.button
@@ -78,6 +80,15 @@ export default function Panel() {
         })}
       </AnimatePresence>
     </div>
+    <button className={styles.panelExpandAll} onClick={expandAll}>
+      <Image
+        width={10}
+        height={10}
+        src='/icons/expand-all.svg'
+        alt=''
+        draggable={false}
+      />
+    </button>
     <div className={styles.panelTime}>
       {currentTime}
     </div>

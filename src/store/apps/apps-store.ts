@@ -9,6 +9,7 @@ export type AppsState = {
 export type AppsActions = {
   fullsizeApp : (id: AppType['id']) => void;
   expandApp   : (id: AppType['id']) => void;
+  expandAll   : () => void;
   setCoords   : (id: AppType['id'], coords: NonNullable<AppType['coords']>) => void;
   closeApp    : (id: AppType['id']) => void;
   focusApp    : (id: AppType['id']) => void;
@@ -76,8 +77,41 @@ export const createAppsStore = () => {
       };
     }),
 
-    expandApp: id => set(state => ({
-      openedApps: state.openedApps.map(app => app.id === id ? { ...app, expanded: !app.expanded } : app),
+    expandApp: id => set(state => {
+      const targetApp = state.openedApps.find(app => app.id === id);
+        
+      if (!targetApp) return state;
+        
+      const isCollapsing = !targetApp.expanded;
+      const isFocused = state.focusedApp?.id === id;
+        
+      const openedApps = state.openedApps.map(app =>
+        app.id === id ? { ...app, expanded: !app.expanded }: app
+      );
+    
+      if (isFocused && isCollapsing) {
+        const nextFocusedApp = openedApps
+          .filter(app => app.id !== id && !app.expanded)
+          .reduce<AppType | null>(
+            (top, app) =>
+              !top || (app.zIndex ?? 0) > (top.zIndex ?? 0)
+                ? app
+                : top,
+            null,
+          );
+        
+        return {
+          openedApps,
+          focusedApp: nextFocusedApp,
+        };
+      }
+    
+      return { openedApps };
+    }),
+
+    expandAll: () => set(state => ({
+      openedApps: state.openedApps.map(el => ({ ...el, expanded: true })),
+      focusedApp: null,
     })),
 
     focusApp: id => set(state => {

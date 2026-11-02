@@ -48,12 +48,12 @@ export interface SimpleAppsType extends BaseAppType {
   type: SimpleAppsTypes;
 };
 
-export type AppType = ExeAppType | ImageAppType | TxtAppType | SimpleAppsType | PdfAppType;
+export type AppType = ExeAppType | ImageAppType | TxtAppType | SimpleAppsType;
 
 export interface FolderType {
   id    : Key;
   title : string;
-  items : Array<AppType | LinkAppType | FolderType>;
+  items : Array<AppType | LinkAppType | PdfAppType | FolderType>;
 };
 
 //other types
