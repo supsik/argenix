@@ -32,7 +32,8 @@
     &.isFullscreen {
       height: calc(100% - 36px);
 
-      & > div {
+      & > div,
+      & > form {
         height: 100%;
         width: 100%;
         max-width: 100%;

@@ -2,6 +2,7 @@ import CustomImage from "@/components/Apps/CustomImage/CustomImage";
 import { AppType } from "./constants/types";
 import Folder      from "@/components/Apps/Folder/Folder";
 import About       from "@/components/Apps/About/About";
+import Email       from "@/components/Apps/Email/Email";
 import Txt         from "@/components/Apps/Txt/Txt";
 
 export const appInfo = {
@@ -34,6 +35,13 @@ const appData: AppType[] = [
     id    : 1,
     type  : 'folder',
     title : 'Файлы',
+  },
+  {
+    id        : 2,
+    type      : 'exe',
+    title     : 'Email',
+    iconSrc   : '/icons/apps/email.svg',
+    component : Email,
   },
 ];
 

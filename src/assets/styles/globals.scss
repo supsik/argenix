@@ -28,10 +28,19 @@ body {
   overflow: hidden;
 }
 
-button, input {
+button, input, textarea {
   background-color: transparent;
   border: none;
   outline: none;
+}
+
+button:disabled {
+  opacity: .55;
+  pointer-events: none;
+}
+
+textarea {
+  resize: none;
 }
 
 li {
