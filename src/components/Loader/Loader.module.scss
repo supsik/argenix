@@ -1,0 +1,20 @@
+.loaderWr {
+  width: 100%;
+  height: calc(100% - 36px);
+  display: grid;
+  place-items: center;
+}
+
+.loaderIcon {
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: .3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
