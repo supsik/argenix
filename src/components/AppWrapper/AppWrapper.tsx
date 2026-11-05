@@ -2,7 +2,9 @@ import {
   ReactNode,
   useRef,
   type MouseEvent,
-  useState
+  useState,
+  useEffect,
+  useCallback,
 } from 'react';
 
 import { useAppsStore } from '@/store/apps/apps-store-provider';
@@ -47,6 +49,33 @@ export default function AppWrapper({ children, data }: PropsType) {
     [styles.imageWr]      : data.type == 'image',
   });
 
+  const handleMouseMove = useCallback((event: globalThis.MouseEvent) => {
+    const coords = {
+      x: event.clientX - startPos.current.x,
+      y: event.clientY - startPos.current.y,
+    };
+
+    currentPos.current = coords;
+    setPosition(coords);
+  }, []);
+
+  const handleMouseUp = useCallback(() => {
+    setIsDragging(false);
+    setCoords(data.id, currentPos.current);
+  }, [data.id, setCoords]);
+
+  useEffect(() => {
+    if (!isDragging) return;
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isDragging, handleMouseMove, handleMouseUp]);
+
   const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
     if (data.fullsized) return;
 
@@ -61,31 +90,16 @@ export default function AppWrapper({ children, data }: PropsType) {
     };
   };
 
-  const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
-    if (!isDragging) return;
-
-    const coords = {
-      x: event.clientX - startPos.current.x,
-      y: event.clientY - startPos.current.y,
-    };
-
-    currentPos.current = coords;
-    setPosition(coords);
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-    setCoords(data.id, currentPos.current);
-  };
-
   const handleClose = (event: MouseEvent) => {
     event.stopPropagation();
     closeApp(data.id)
   };
+  
   const handleExpand = (event: MouseEvent) => {
     event.stopPropagation();
     expandApp(data.id)
   };
+
   const handleFullsize = (event: MouseEvent) => {
     event.stopPropagation();
     fullsizeApp(data.id)
@@ -107,9 +121,6 @@ export default function AppWrapper({ children, data }: PropsType) {
     <div
       className={styles.appHeader}
       onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
     >
       <Image
         src={iconSrc}
