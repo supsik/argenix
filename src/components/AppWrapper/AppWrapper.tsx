@@ -47,6 +47,7 @@ export default function AppWrapper({ children, data }: PropsType) {
     [styles.appContent]   : true,
     [styles.isFullscreen] : data.fullsized,
     [styles.imageWr]      : data.type == 'image',
+    [styles.pdfWr]        : data.type == 'pdf',
   });
 
   const handleMouseMove = useCallback((event: globalThis.MouseEvent) => {

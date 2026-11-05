@@ -4,6 +4,7 @@ import Folder      from "@/components/Apps/Folder/Folder";
 import About       from "@/components/Apps/About/About";
 import Email       from "@/components/Apps/Email/Email";
 import Txt         from "@/components/Apps/Txt/Txt";
+import Pdf         from "@/components/Apps/Pdf/Pdf";
 
 export const appInfo = {
   folder: {
@@ -19,7 +20,8 @@ export const appInfo = {
     component : Txt,
   },
   pdf: {
-    iconSrc: '/icons/apps/pdf.svg',
+    iconSrc   : '/icons/apps/pdf.svg',
+    component : Pdf,
   }
 };
 

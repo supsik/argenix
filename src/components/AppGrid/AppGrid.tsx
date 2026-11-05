@@ -47,6 +47,15 @@ export default function AppGrid() {
                 </AppWrapper>
               );
             };
+
+            case 'pdf': {
+              const Comp = appInfo.pdf.component;
+              return !app.expanded && (
+                <AppWrapper key={app.id} data={app}>
+                  <Comp href={app.href} />
+                </AppWrapper>
+              );
+            };
           
             default: {
               const Comp = appInfo[app.type].component;

@@ -78,7 +78,7 @@ export default function AppLabel({ app, isDraggable }: PropsType) {
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
     >
-      {app.type !== 'link' && app.type !== 'pdf'?
+      {app.type !== 'link'?
         <button onDoubleClick={() => handleOpenApp(app)}>
           {
             app.type !== 'image' ?
