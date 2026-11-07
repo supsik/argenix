@@ -1,10 +1,10 @@
 import styles from './Pdf.module.scss';
 
 interface PropsType {
-  href: string,
+  data: string,
 };
 
-export default function Pdf({ href }: PropsType) {
+export default function Pdf({ data: href }: PropsType) {
   const hideCursor = () => {
     (document.querySelector('.cursor') as HTMLElement)!.style.display = 'none';
   };

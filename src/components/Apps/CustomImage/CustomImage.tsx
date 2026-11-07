@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import styles from './CustomImage.module.scss';
-import Image  from 'next/image';
-import Loader from '@/components/Loader/Loader';
+import Loader       from '@/components/Loader/Loader';
+import styles       from './CustomImage.module.scss';
+import Image        from 'next/image';
 
 interface Props {
-  imageSrc: string,
+  data: string,
 };
 
-export default function CustomImage({imageSrc}: Props) {
+export default function CustomImage({ data: imageSrc }: Props) {
   const [isLoading, setIsLoading] = useState(true);
   return <div className={`image-wr ${styles.imageWr}`}>
     {isLoading && <Loader />}
