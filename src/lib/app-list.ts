@@ -3,6 +3,7 @@ import { AppType } from "./constants/types";
 import Folder      from "@/components/Apps/Folder/Folder";
 import About       from "@/components/Apps/About/About";
 import Email       from "@/components/Apps/Email/Email";
+import Info        from "@/components/Apps/Info/Info";
 import Txt         from "@/components/Apps/Txt/Txt";
 import Pdf         from "@/components/Apps/Pdf/Pdf";
 
@@ -22,6 +23,10 @@ export const appInfo = {
   pdf: {
     iconSrc   : '/icons/apps/pdf.svg',
     component : Pdf,
+  },
+  info: {
+    iconSrc   : '/icons/apps/info.svg',
+    component : Info,
   }
 };
 

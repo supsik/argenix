@@ -34,9 +34,9 @@ export interface TxtAppType extends BaseAppType {
   content : string,
 };
 
-export interface TxtAppType extends BaseAppType {
-  type    : 'txt',
-  content : string,
+export interface InfoAppType extends BaseAppType {
+  type    : 'info',
+  content : ReadmeType,
 };
 
 export interface PdfAppType extends BaseAppType {
@@ -48,7 +48,7 @@ export interface SimpleAppsType extends BaseAppType {
   type: SimpleAppsTypes;
 };
 
-export type AppType = ExeAppType | ImageAppType | TxtAppType | PdfAppType | SimpleAppsType;
+export type AppType = ExeAppType | ImageAppType | TxtAppType | InfoAppType | PdfAppType | SimpleAppsType;
 
 export interface FolderType {
   id    : Key;
@@ -62,6 +62,18 @@ export interface HardSkillsType {
   icon  : string,
   items : Array<string>,
 };
+
+export interface ReadmeType {
+  title             : string,
+  icon              : string,
+  iconBgColor       : string,
+  description       : string,
+  team              : string,
+  responsibilities? : string[],
+  achievements?     : string[],
+  technologies      : string[],
+
+}
 
 export interface LanguagesType {
   title : string,

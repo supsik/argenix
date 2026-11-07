@@ -39,11 +39,12 @@ export default function AppGrid() {
               );
             };
 
-            case 'txt': {
-              const Comp = appInfo.txt.component;
+            case 'txt':
+            case 'info': {
+              const Comp = appInfo[app.type].component;
               return !app.expanded && (
                 <AppWrapper key={app.id} data={app}>
-                  <Comp data={app.content} />
+                  <Comp data={app.content as any} />
                 </AppWrapper>
               );
             };

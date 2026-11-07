@@ -1,6 +1,14 @@
-export default `
-  <h2>Сайт-портфолио — Argenix</h2>
-  <p><strong>Команда:</strong> Я</p>
-  <p>Вы прямо сейчас находитесь на этом проекте :) — это мой личный сайт-портфолио, созданный для демонстрации навыков разработки. Помимо того, что портфолио служит витриной моих работ, сам сайт является полноценным пет-проектом: здесь я применяю и оттачиваю современные подходы к фронтенду.</p>
-  <p><strong>Технологии:</strong> React 19, Next.js, TypeScript, Redux, Jest.</p>
-`;
+export default {
+  title: 'Argenix',
+  description: 'Сайт портфолио',
+  team: '1 Front',
+  technologies: [
+    'React',
+    'Next',
+    'Zustand',
+    'JavaScript',
+    'TypeScript',
+    'HTML5',
+    'CSS/SCSS'
+  ]
+}

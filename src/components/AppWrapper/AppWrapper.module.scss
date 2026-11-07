@@ -29,6 +29,12 @@
     scrollbar-width: thin;
     scrollbar-color: $green black;
 
+    & > div,
+    & > form {
+      width: 60vw;
+      height: 70vh;
+    }
+
     &.isFullscreen {
       height: calc(100% - 36px);
 

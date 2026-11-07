@@ -22,7 +22,7 @@ export const folderData: FolderType = {
             {
               id      : 'serenity-readme',
               title   : 'О проекте',
-              type    : 'txt',
+              type    : 'info',
               content : readme.serenity,
             },
             {
@@ -46,7 +46,7 @@ export const folderData: FolderType = {
             {
               id      : 'vib-readme',
               title   : 'О проекте',
-              type    : 'txt',
+              type    : 'info',
               content : readme.vib,
             },
           ]
@@ -64,8 +64,8 @@ export const folderData: FolderType = {
             {
               id      : 'lineaflex-readme',
               title   : 'О проекте',
-              type    : 'txt',
-              content : readme.vib,
+              type    : 'info',
+              content : readme.lineaflex,
             },
           ]
         },
@@ -82,7 +82,7 @@ export const folderData: FolderType = {
             {
               id      : 'sport-print-readme',
               title   : 'О проекте',
-              type    : 'txt',
+              type    : 'info',
               content : readme.sportPrint,
             },
             {
@@ -100,7 +100,7 @@ export const folderData: FolderType = {
             {
               id      : 'argenix-readme',
               title   : 'О проекте',
-              type    : 'txt',
+              type    : 'info',
               content : readme.argenix,
             },
           ]
