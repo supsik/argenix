@@ -1,7 +1,9 @@
 export default {
-  title: 'Lineaflex',
-  description: 'Интернет магазин матрасов',
-  team: '2 Front, 1 Back, 2 QA, 1 Manager',
+  title       : 'Lineaflex',
+  icon        : '/icons/projects/lineaflex.svg',
+  iconBgColor : '#00379e',
+  description : 'Интернет магазин матрасов',
+  team        : '2 Front, 1 Back, 2 QA, 1 Manager',
   responsibilities: [
     'Разработка и поддержка frontend-части интернет-магазина на React и Next.js.',
     'Миграция проекта на Next.js с использованием SSR для улучшения производительности и SEO.',

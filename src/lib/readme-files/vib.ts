@@ -1,7 +1,9 @@
 export default {
-  title: 'ВкусноИБыстро',
-  description: 'Сервис доставки еды',
-  team: '1 Front, 2 Back, 2 QA, 1 Manager',
+  title       : 'ВкусноИБыстро',
+  icon        : '/icons/projects/vib.svg',
+  iconBgColor : '#e24000',
+  description : 'Сервис доставки еды',
+  team        : '1 Front, 2 Back, 2 QA, 1 Manager',
   responsibilities: [
     'Разработка и поддержка frontend-части сервиса доставки еды на React.',
     'Миграция проекта на React 19 и адаптация существующей архитектуры.',

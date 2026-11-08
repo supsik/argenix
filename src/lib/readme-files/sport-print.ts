@@ -1,7 +1,9 @@
 export default {
-  title: 'Спорт Принт',
-  description: 'Интернет магазин одежды',
-  team: '1 Front, 2 Back, 1 QA, 1 Manager',
+  title       : 'Спорт Принт',
+  icon        : '/icons/projects/sport-print.svg',
+  iconBgColor : '#df8600',
+  description : 'Интернет магазин одежды',
+  team        : '1 Front, 2 Back, 1 QA, 1 Manager',
   responsibilities: [
     'Разработка и поддержка frontend-части интернет-магазина: каталога, карточек товаров, корзины и оформления заказа.',
     'Оптимизация производительности и скорости загрузки страниц с использованием code splitting и lazy loading.',

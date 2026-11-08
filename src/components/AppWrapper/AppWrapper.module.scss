@@ -1,5 +1,5 @@
 .appWr {
-  background-color: $dark50;
+  background-color: $dark75;
   pointer-events: all;
   position: absolute;
   z-index: 1;
@@ -23,6 +23,8 @@
   }
 
   .appContent {
+    width: 60vw;
+    height: 70vh;
     padding-inline: 24px;
     overflow-y: auto;
     overflow-x: hidden;
@@ -31,16 +33,15 @@
 
     & > div,
     & > form {
-      width: 60vw;
-      height: 70vh;
+      width: 100%;
     }
 
     &.isFullscreen {
+      width: 100%;
       height: calc(100% - 36px);
 
       & > div,
       & > form {
-        height: 100%;
         width: 100%;
         max-width: 100%;
       }
@@ -59,13 +60,13 @@
     left: 0;
 
     .appContent {
+      width: 100%;
       padding-inline: 12px;
       height: calc(100% - 36px);
       overflow: auto;
 
       & > div,
       & > form {
-        height: 100%;
         width: 100%;
         max-width: 100%;
       }
