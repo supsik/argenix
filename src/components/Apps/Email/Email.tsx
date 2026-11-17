@@ -99,18 +99,7 @@ export default function Email() {
             autoComplete="name"
           />
         </label>
-        <label className={styles.emailLabel}>
-          <span>email:</span>
-          <input
-            type="email"
-            name="email"
-            required
-            disabled={isSending}
-            autoComplete="email"
-          />
-        </label>
       </div>
-
       <textarea
         name="message"
         placeholder="Введите ваше сообщение"
@@ -118,7 +107,6 @@ export default function Email() {
         disabled={isSending}
         aria-label="Сообщение"
       />
-
       <button type="submit" disabled={disabled} aria-busy={isSending}>
         {isSending ? 'Отправка...' : 'Отправить'}
       </button>

@@ -25,7 +25,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Toaster
           gutter={8}
           position='bottom-right'
-          containerClassName="test"
+          containerClassName="toast"
           toastOptions={{
             duration: 2000,
             style: {
